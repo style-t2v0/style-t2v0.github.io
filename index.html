@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>StyleT2V0: Zero-Shot Short Video Generation Guided by Text and Style</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+    <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 2px solid #F1F4F5;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(3n - 1) {
+      background-color: #F1F4F5;
+    }
+
+    tr:nth-child(3n) {
+      border: 2px solid #FFFFFF;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">StyleT2V0: Zero-Shot Short Video Generation Guided by Text and Style</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://www.linkedin.com/in/astghikchobanyan/">Astghik Chobanyan</a><sup>1</sup>,</span>
+              <span class="author-block">
+                  <a href="https://levon-kh.github.io/">Levon Khachatryan</a><sup>1, 2</sup></span>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Yerevan State University (YSU), </span>
+              <span class="author-block"><sup>2</sup>Picsart AI Research (PAIR) </span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                   <!-- Arxiv PDF link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- Github link -->
+              <span class="link-block">
+                <a href="https://github.com/" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+              </a>
+              </span>
+
+                              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/spaces/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <img src="./static/images/hf.png" alt="Button Image">
+                  </span>
+                  <span>Demo</span>
+                </a>
+                <!-- ArXiv abstract Link -->
+<!--              <span class="link-block">-->
+<!--                <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"-->
+<!--                class="external-link button is-normal is-rounded is-dark">-->
+<!--                <span class="icon">-->
+<!--                  <i class="ai ai-arxiv"></i>-->
+<!--                </span>-->
+<!--                <span>arXiv</span>-->
+<!--              </a>-->
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img id="teaser" autoplay muted loop playsinline height="100%" src="./static/images/teaser.jpg" style="width:100%;height:600px;">
+        <p class="subtitle has-text-centered">
+          Our method <span class="dnerf">StyleT2V0</span>, advances video generation capabilities by utilizing: (i) a textual prompt combined with a style image to capture the ensure stylistic and contextual accuracy across frames (see rows 1, 4), (ii) pose control to ensure dynamic accuracy, (iii) edge control for enhanced visual definition, and (iv) depth control to enrich spatial perception. The showcased frames illustrate the method’s robust ability to adaptively integrate enhanced controls while consistently reflecting the artistic intent and textual specifications.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Paper abstract -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Recent advancements in text-to-image diffusion models have markedly expanded the potential for generating images based on textual descriptions. Yet, the extension of these capabilities to video generation poses significant challenges, particularly in achieving stylistic consistency across video frames. Traditional approaches often require extensive training processes and face difficulties in maintaining a coherent artistic style throughout the sequence, especially when attempting to emulate a <b>specific style referenced by an image</b>.
+              To bridge this gap, we introduce StyleT2V0, a zero-shot methodology that enables the generation of videos directly from textual prompts while ensuring stylistic alignment with a designated reference image. By integrating shared attention mechanisms within the generation process, our approach guarantees that each frame not only adheres contextually to the textual description but also maintains stylistic coherence with the reference image, all without the need for additional model training. This method represents a significant step forward in simplifying the video production process from textual descriptions, offering a streamlined and efficient solution for creating stylistically consistent video content.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End paper abstract -->
+
+
+  <!-- Method -->
+
+  </section><section class="section" id="Method">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Method</h2>
+      <section class="hero method">
+        <div class="container is-max-desktop">
+          <div class="hero-body">
+            <p>
+              In StyleT2V0, we extend the Text2Video-Zero framework by embedding a novel shared attention mechanism tailored for style consistency. This innovation enables the generation of video sequences that are not only contextually aligned with textual prompts but also exhibit a uniform style, matching a reference image. By altering the conventional attention computation within the network, StyleT2V0 integrates style features from a designated reference image, effectively synchronizing the visual style across all frames. This approach ensures that each frame of the video not only responds accurately to the text input but also consistently reflects the aesthetic qualities of the reference style.
+            </p><br>
+            <img id="method" autoplay muted loop playsinline height="100%" src="./static/images/main-diagram.jpg" style="width:100%;height:100%;">
+
+            <p>
+              <i>Architectural Overview of the StyleT2V0 Method:</i> This diagram illustrates the integration of the shared attention mechanism within the Text2Video-Zero framework to enhance style consistency across video sequences. The method employs Adaptive Instance Normalization (AdaIN) to adjust the query <span class="math">(Q<sub>i</sub>)</span> for each frame <span class="math">F<sub>i</sub></span> by blending style features from a designated reference image <span class="math">(Q<sub>r</sub>)</span>, ensuring stylistic uniformity and alignment with textual prompts. Keys <span class="math">(K)</span> and values <span class="math">(V)</span> are also adapted using AdaIN, aligning them with the style of the reference image while maintaining content continuity from the first frame <span class="math">(K<sub>1</sub> and V<sub>1</sub>)</span>. The resultant attention mechanism applies these style-consistent queries, keys, and values to produce a video sequence where each frame is coherent in both style and content.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+  <!-- Results -->
+  <section class="section" id="Results">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Results</h2>
+      <section class="hero method">
+      <div class="container is-max-desktop">
+      <div class="hero-body">
+      <h3 class="title">StyleT2V0</h3>
+      <table class="center">
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td style="vertical-align: middle; text-align: center;">
+            <img src="./static/images/styles/saryan.jpg" raw=true>
+          </td>
+          <td><img src="./static/images/martiros_saryan/1.gif"></td>
+          <td><img src="./static/images/martiros_saryan/13.gif"></td>
+          <td><img src="./static/images/martiros_saryan/19.gif"></td>
+        </tr>
+        <tr>
+          <td width=25% style="text-align:center;">"Martiros Saryan"</td>
+          <td width=25% style="text-align:center;">"A cat playing with a ball of yarn"</td>
+          <td width=25% style="text-align:center;">"A runner jogging along a river at dawn"</td>
+          <td width=25% style="text-align:center;">"A dog  running along a beach"</td>
+        </tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td style="vertical-align: middle; text-align: center;">
+            <img src="./static/images/styles/minas.jpg" raw=true>
+          </td>
+          <td><img src="./static/images/minas_avetisyan/3.gif"></td>
+          <td><img src="./static/images/minas_avetisyan/12.gif"></td>
+          <td><img src="./static/images/minas_avetisyan/18.gif"></td>
+        </tr>
+        <tr>
+          <td width=25% style="text-align:center;">"Minas Avetisyan</td>
+          <td width=25% style="text-align:center;">"A couple walking hand in hand on the beach at sunset"</td>
+          <td width=25% style="text-align:center;">"A teenager skateboarding down a city street"</td>
+          <td width=25% style="text-align:center;">"A unicorn dancing in times square"</td>
+        </tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td style="vertical-align: middle; text-align: center;">
+            <img src="./static/images/styles/vangog_style.png" raw=true>
+          </td>
+          <td><img src="./static/images/van_gogh/0.gif"></td>
+          <td><img src="./static/images/van_gogh/5.gif"></td>
+          <td><img src="./static/images/van_gogh/17.gif"></td>
+        </tr>
+        <tr>
+          <td width=25% style="text-align:center;">"Van Gogh"</td>
+          <td width=25% style="text-align:center;">"A horse galloping on a street"</td>
+          <td width=25% style="text-align:center;">"A painter working on a canvas in a sunny studio"</td>
+          <td width=25% style="text-align:center;">"An astronaut is skiing on the moon"</td>
+        </tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr>
+          <td style="vertical-align: middle; text-align: center;">
+            <img src="./static/images/styles/watercolor.png"  raw=true>
+          </td>
+          <td><img src="./static/images/watercolor/6.gif"></td>
+          <td><img src="./static/images/watercolor/9.gif"></td>
+          <td><img src="./static/images/watercolor/10.gif"></td>
+        </tr>
+        <tr>
+          <td width=25% style="text-align:center;">"Watercolor"</td>
+          <td width=25% style="text-align:center;">"A gardener planting flowers in a blooming garden"</td>
+          <td width=25% style="text-align:center;">"Leaves falling from trees on a windy autumn day"</td>
+          <td width=25% style="text-align:center;">"A child blowing bubbles in a park"</td>
+        </tr>
+      </table>
+      <br>
+
+      <h3 class="title">StyleT2V0 with Pose Guidance</h3>
+      <table class="center">
+      <tr>
+        <td style="vertical-align: middle; text-align: center;">
+        </td>
+        <td><img src="./static/images/pose/input/dance2_corr.gif"></td>
+        <td><img src="./static/images/pose/input/dance4_corr.gif"></td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle; text-align: center;">
+          <img src="./static/images/styles/saryan.jpg" raw=true>
+        </td>
+        <td><img src="./static/images/pose/saryan/beer_dance.gif"></td>
+        <td><img src="./static/images/pose/saryan/panda_dance.gif"></td>
+      </tr>
+      <tr>
+        <td width=25% style="text-align:center;">"Martiros Saryan</td>
+        <td width=25% style="text-align:center;">"A bear dancing on the concrete"</td>
+        <td width=25% style="text-align:center;">"A panda dancing on the concrete"</td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle; text-align: center;">
+          <img src="./static/images/styles/vangog_style.png" raw=true>
+        </td>
+        <td><img src="./static/images/pose/van_gogh/beer_dance.gif"></td>
+        <td><img src="./static/images/pose/van_gogh/panda_dance.gif"></td>
+      </tr>
+      <tr>
+        <td width=25% style="text-align:center;">"Van Gogh"</td>
+        <td width=25% style="text-align:center;">"A bear dancing on the concrete"</td>
+        <td width=25% style="text-align:center;">"A panda dancing on the concrete"</td>
+      </tr>
+            <tr><td></td><td></td><td></td></tr>
+      </table>
+    <br>
+
+    <h3 class="title">StyleT2V0 with Edge Guidance</h3>
+    <table class="center">
+    <tr>
+      <td style="vertical-align: middle; text-align: center;">
+      </td>
+      <td><img src="./static/images/edge/input/butterfly.gif"></td>
+      <td><img src="./static/images/edge/input/deer.gif"></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: middle; text-align: center;">
+        <img src="./static/images/styles/saryan.jpg" raw=true>
+      </td>
+      <td><img src="./static/images/edge/saryan/butterfly.gif"></td>
+      <td><img src="./static/images/edge/saryan/deer.gif"></td>
+    </tr>
+    <tr>
+      <td width=25% style="text-align:center;">"Martiros Saryan</td>
+      <td width=25% style="text-align:center;">"A butterfly"</td>
+      <td width=25% style="text-align:center;">"A deer"</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: middle; text-align: center;">
+        <img src="./static/images/styles/vangog_style.png" raw=true>
+      </td>
+      <td><img src="./static/images/edge/van_gogh/butterfly.gif"></td>
+      <td><img src="./static/images/edge/van_gogh/deer.gif"></td>
+    </tr>
+    <tr>
+      <td width=25% style="text-align:center;">"Van Gogh"</td>
+      <td width=25% style="text-align:center;">"A butterfly"</td>
+      <td width=25% style="text-align:center;">"A deer"</td>
+    </tr>
+          <tr><td></td><td></td><td></td></tr>
+    </table>
+    <br>
+
+    <h3 class="title">StyleT2V0 with Depth Guidance</h3>
+    <table class="center">
+    <tr>
+      <td style="vertical-align: middle; text-align: center;">
+      </td>
+      <td><img src="./static/images/depth/input/butterfly.gif"></td>
+      <td><img src="./static/images/depth/input/deer.gif"></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: middle; text-align: center;">
+        <img src="./static/images/styles/saryan.jpg" raw=true>
+      </td>
+      <td><img src="./static/images/depth/saryan/butterfly.gif"></td>
+      <td><img src="./static/images/depth/saryan/deer.gif"></td>
+    </tr>
+    <tr>
+      <td width=25% style="text-align:center;">"Martiros Saryan</td>
+      <td width=25% style="text-align:center;">"A butterfly"</td>
+      <td width=25% style="text-align:center;">"A deer"</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: middle; text-align: center;">
+        <img src="./static/images/styles/vangog_style.png" raw=true>
+      </td>
+      <td><img src="./static/images/depth/van_gogh/butterfly.gif"></td>
+      <td><img src="./static/images/depth/van_gogh/deer.gif"></td>
+    </tr>
+    <tr>
+      <td width=25% style="text-align:center;">"Van Gogh"</td>
+      <td width=25% style="text-align:center;">"A butterfly"</td>
+      <td width=25% style="text-align:center;">"A deer"</td>
+    </tr>
+    <tr><td></td><td></td><td></td></tr>
+    </table>
+    </div></div></section>
+  </div>
+  </section>
+
+  <!-- End of Results -->
+
+
+  <!-- Paper poster -->
+  <section class="hero is-small is-light">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title">Poster</h2>
+
+        <iframe  src="static/pdfs/paper.pdf" width="100%" height="550">
+            </iframe>
+
+        </div>
+      </div>
+    </section>
+  <!--End paper poster -->
+
+
+  <!--BibTex citation -->
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>BibTex Code Here</code></pre>
+      </div>
+  </section>
+  <!--End BibTex citation -->
+
+
+    <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Statcounter tracking code -->
+
+  <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+      <!-- End of Statcounter Code -->
+</body>
+</html>
